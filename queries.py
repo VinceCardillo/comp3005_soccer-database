@@ -193,8 +193,8 @@ def Q_2(cursor, conn, execution_time):
     # Enter QUERY within the quotes:
 
     query = """ SELECT player_name, COUNT(event_id) AS shots
-                FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event NATURAL JOIN event_shot
-                WHERE season_name = '2020/2021' AND competition_name = 'La Liga'
+                FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event
+                WHERE season_name = '2020/2021' AND competition_name = 'La Liga' AND event_name = 'Shot'
                 GROUP BY player_name
                 HAVING COUNT(player_name) > 0
                 ORDER BY shots DESC; """
@@ -240,8 +240,8 @@ def Q_4(cursor, conn, execution_time):
     # Enter QUERY within the quotes:
     
     query = """ SELECT team_name, COUNT(event_id) AS passes_made
-                FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event NATURAL JOIN event_pass
-                WHERE season_name = '2020/2021' AND competition_name = 'La Liga'
+                FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event
+                WHERE season_name = '2020/2021' AND competition_name = 'La Liga' AND event_name = 'Pass'
                 GROUP BY team_name
                 HAVING COUNT(team_name) > 0
                 ORDER BY passes_made DESC; """
@@ -286,8 +286,8 @@ def Q_6(cursor, conn, execution_time):
     # Enter QUERY within the quotes:
     
     query = """ SELECT team_name, COUNT(event_id) AS shots_made
-            FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event NATURAL JOIN event_shot
-            WHERE season_name = '2003/2004' AND competition_name = 'Premier League'
+            FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event
+            WHERE season_name = '2003/2004' AND competition_name = 'Premier League' AND event_name = 'Shot'
             GROUP BY team_name
             HAVING COUNT(team_name) > 0
             ORDER BY shots_made DESC; """
@@ -378,8 +378,8 @@ def Q_10(cursor, conn, execution_time):
     # Enter QUERY within the quotes:
     
     query = """ SELECT player_name, COUNT(event_id) AS dribbled_past_count
-                FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event NATURAL JOIN event_dribbled_past
-                WHERE season_name = '2020/2021' AND competition_name = 'La Liga'
+                FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event
+                WHERE season_name = '2020/2021' AND competition_name = 'La Liga' AND event_name = 'Dribbled Past'
                 GROUP BY player_name
                 HAVING COUNT(player_name) > 0
                 ORDER BY dribbled_past_count ASC; """
