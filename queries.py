@@ -333,7 +333,7 @@ def Q_8(cursor, conn, execution_time):
     
     query = """ SELECT team_name, COUNT(DISTINCT event_id) AS through_ball_count
                 FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event NATURAL JOIN event_pass
-                WHERE season_name = '2020/2021' AND competition_name = 'La Liga' and pass_technique_name = 'Through Ball'
+                WHERE season_name = '2020/2021' AND competition_name = 'La Liga' AND pass_technique_name = 'Through Ball'
                 GROUP BY team_name
                 HAVING COUNT(team_name) > 0
                 ORDER BY through_ball_count DESC; """
