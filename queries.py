@@ -262,9 +262,9 @@ def Q_5(cursor, conn, execution_time):
     #==========================================================================    
     # Enter QUERY within the quotes:
     
-    query = """ SELECT pass_recipient_name, COUNT(DISTINCT pass_recipient_id) AS intended_pass_receipts
+    query = """ SELECT pass_recipient_name, COUNT(DISTINCT event_id) AS intended_pass_receipts
                 FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event NATURAL JOIN event_pass
-                WHERE season_name = '2003/2004' AND competition_name = 'Premier League'
+                WHERE season_name = '2003/2004' AND competition_name = 'Premier League' AND pass_recipient_name != 'NULL'
                 GROUP BY pass_recipient_name
                 HAVING COUNT(pass_recipient_name) > 0
                 ORDER BY intended_pass_receipts DESC; """
@@ -286,11 +286,11 @@ def Q_6(cursor, conn, execution_time):
     # Enter QUERY within the quotes:
     
     query = """ SELECT team_name, COUNT(DISTINCT event_id) AS shots_made
-            FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event
-            WHERE season_name = '2003/2004' AND competition_name = 'Premier League' AND event_name = 'Shot'
-            GROUP BY team_name
-            HAVING COUNT(team_name) > 0
-            ORDER BY shots_made DESC; """
+                FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event
+                WHERE season_name = '2003/2004' AND competition_name = 'Premier League' AND event_name = 'Shot'
+                GROUP BY team_name
+                HAVING COUNT(team_name) > 0
+                ORDER BY shots_made DESC; """
 
     #==========================================================================
 
@@ -356,7 +356,7 @@ def Q_9(cursor, conn, execution_time):
     
     query = """ SELECT player_name, COUNT(DISTINCT event_id) AS completed_dribbles
                 FROM competition NATURAL JOIN season NATURAL JOIN match NATURAL JOIN event NATURAL JOIN event_dribble
-                WHERE season_name = '2020/2021' OR season_name = '2019/2020' OR season_name = '2018/2019' AND competition_name = 'La Liga' and dribble_outcome_name = 'Complete'
+                WHERE season_name = '2020/2021' OR season_name = '2019/2020' OR season_name = '2018/2019' AND competition_name = 'La Liga' AND dribble_outcome_name = 'Complete'
                 GROUP BY player_name
                 HAVING COUNT(player_name) > 0
                 ORDER BY completed_dribbles DESC; """
